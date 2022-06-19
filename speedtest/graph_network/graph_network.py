@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def panda_csv():
-    """ Get data from csv """
+    """ Get data from csv as panda dataframe """
 
     columns = ["DateTime", "Ping (ms)", "Jitter (ms)", "Download (Mbps)", "Upload (Mbps)"]
     df = pd.read_csv("/home/joey/Documents/Raspi/Speedtest/speedtest.csv", usecols=columns)
