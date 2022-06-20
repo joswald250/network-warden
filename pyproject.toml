@@ -15,14 +15,18 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 keywords = ["network", "warden", "raspberry pi"]
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 
 dependencies = [
     "matplotlib",
     "numpy",
     "pandas",
     "pathlib",
-    "tkinter"
+    "tkinter",
+    'tomli >= 1.1.0 ; python_version < "3.11"',
+    "tomli-w",
+    "tk >= 8.5",
+    "pyqt >= 5"
 ]
 
 [project.urls]

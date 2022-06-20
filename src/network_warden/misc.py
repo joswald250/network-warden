@@ -1,3 +1,5 @@
-import helpers
+from pathlib import Path
 
-helpers.get_csv()
+p = Path.cwd()
+p = list(p.glob('*'))
+print(p)

@@ -1,4 +1,5 @@
 from helpers import *
+import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -22,6 +23,7 @@ def graph(data):
 
 
 def main():
+    matplotlib.use('TkAgg')
     get_csv()
     df = panda_csv()
     data = convert_to_np_array(df)

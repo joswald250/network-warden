@@ -5,23 +5,23 @@ import numpy as np
 import pandas as pd
 import subprocess
 
+
 def get_csv():
     """Establish connection with raspi and pull csv"""
 
-    file_path = Path()
-    print(file_path)
+    file_path = Path.cwd()
     remote_file_location = "pi@192.168.0.38:/home/pi/speedtest/speedtest.csv"
-    local_file_location = file_path.parent.parent.joinpath('data', 'speedtest.csv')
-    print(local_file_location.resolve())
+    local_file_location = file_path.joinpath('data', 'speedtest.csv')
     command = ["scp", remote_file_location, local_file_location]
-    #subprocess.run(command)
+    subprocess.run(command)
 
 def panda_csv():
     """ Get data from csv """
 
-    local_csv_location = "/home/joey/Documents/Raspi/network_warden/network_warden/data/speedtest.csv"
+    file_path = Path.cwd()
+    local_file_location = file_path.joinpath('data', 'speedtest.csv')
     columns = ["DateTime", "Ping (ms)", "Jitter (ms)", "Download (Mbps)", "Upload (Mbps)"]
-    df = pd.read_csv(local_csv_location, usecols=columns)
+    df = pd.read_csv(local_file_location, usecols=columns)
     return df
 
 def convert_to_np_array(df):
