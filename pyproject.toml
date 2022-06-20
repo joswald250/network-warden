@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "network_warden"
+version = "0.1.0"
+description = "Keep watch over your network and view common statistics in graphical format. Compatible with remote network monitoring devices."
+readme = "README.md"
+authors = [{ name = "Joey", email = "rapitwitterbots@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: GNU AGPL",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["network", "warden", "raspberry pi"]
+requires-python = ">=3.9"
+
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "pathlib",
+    "tkinter"
+]
+
+[project.urls]
+Homepage = "https://github.com/rapitwitterbots/network-warden"
+
+[project.scripts]
+networok_warden = "network_warden.__main__:main"

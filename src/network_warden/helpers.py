@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+from pathlib import Path
 import numpy as np
 import pandas as pd
 import subprocess
@@ -7,9 +8,13 @@ import subprocess
 def get_csv():
     """Establish connection with raspi and pull csv"""
 
+    file_path = Path()
+    print(file_path)
     remote_file_location = "pi@192.168.0.38:/home/pi/speedtest/speedtest.csv"
-    command = ["scp", remote_file_location, "/home/joey/Documents/Raspi/Speedtest"]
-    subprocess.run(command)
+    local_file_location = file_path.parent.parent.joinpath('data', 'speedtest.csv')
+    print(local_file_location.resolve())
+    command = ["scp", remote_file_location, local_file_location]
+    #subprocess.run(command)
 
 def panda_csv():
     """ Get data from csv """
