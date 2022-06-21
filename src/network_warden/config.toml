@@ -1,6 +1,6 @@
 [user]
-username = "jerry"
-ip_address = "192.168.0.24"
+username = "joswald"
+ip_address = "192.168.0.38"
 
 [remote_servers]
 ip_address = "0.0.0.0"
