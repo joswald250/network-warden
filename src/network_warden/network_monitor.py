@@ -27,14 +27,14 @@ def main():
     jitter = jitter.group(1)
     
     try:
-        f = open('/home/pi/speedtest/speedtest.csv', 'a+')
-        if os.stat('/home/pi/speedtest/speedtest.csv').st_size == 0:
-                f.write('DateTime,Ping (ms),Jitter (ms),Download (Mbps),Upload (Mbps)\r\n')
+        f = open('/home/pi/network_monitor/network_monitor.csv', 'a+')
+        if os.stat('/home/pi/network_monitor/network_monitor.csv').st_size == 0:
+                f.write('Date,Time,Ping (ms),Jitter (ms),Download (Mbps),Upload (Mbps)\r\n')
     except:
         pass
     
     now = datetime.datetime.now()
-    f.write('{},{},{},{},{}\r\n'.format(now.strftime('%m/%d/%y %H:%M'), 
+    f.write('{},{},{},{},{},{}\r\n'.format(now.strftime('%m/%d/%y'), now.strftime('%H:%M'), 
             ping, jitter, download, upload))
 
 if __name__ == '__main__':
