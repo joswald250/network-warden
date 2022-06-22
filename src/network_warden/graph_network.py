@@ -1,4 +1,8 @@
-from helpers import *
+import helpers
+import subprocess
+from pathlib import Path
+import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
@@ -15,18 +19,29 @@ class Graph():
     - upload_graph_params
     - download_graph_params
     - fig, axs for a subplot
+    - ip_address
+    - csv_file_location
+    - remote_server_capability
+    - remote_server_username
 
     Methods:
     - __init__
     - graph_selector
     - prepare_data
-    - my_plotter 
+    - my_plotter
+    - get_csv
+    - panda_csv
+    - convert_to_np_array
     """
 
     jitter_graph_params = {"xlabel": "Time", "ylabel": "Jitter (ms)", "title": "Jitter over Time"}
     upload_graph_params = {"xlabel": "Time", "ylabel": "Upload (Mbps)", "title": "Upload Speed over Time"}
     download_graph_params = {"xlabel": "Time", "ylabel": "Download (Mbps)", "title": "Download Speed over Time"}
     fig, axs = plt.subplots()
+    ip_address = "192.168.0.2"
+    csv_file_location = "/home/pi/network_monitor/network_monitor.csv"
+    remote_server_capability = False
+    remote_server_username = ""
 
     def __init__(self, jitter=False, upload=False, download=False):
         """
@@ -40,6 +55,8 @@ class Graph():
         self.upload = upload
         self.download = download
 
+        self.load_settings()
+
         data = self.prepare_data()
         self.time = data[:,1]
         self.ping = data[:,2]
@@ -48,6 +65,17 @@ class Graph():
         self.upload_data = data[:,5]
 
         self.graph_selector()
+
+    def load_settings(self):
+        configs = helpers.read_from_config()
+        self.remote_server_capability = configs["user"]["remote_server_capability"]
+        if self.remote_server_capability:
+            self.csv_file_location = configs["remote_servers"]["csv_location"]
+            self.ip_address = configs["remote_servers"]["ip_address"]
+            self.remote_server_username = configs["remote_servers"]["username"]
+        else:
+            self.csv_file_location = configs["user"]["csv_location"]
+            self.ip_address = configs["user"]["ip_address"]
 
     def graph_selector(self):
         """
@@ -104,13 +132,15 @@ class Graph():
 
     def prepare_data(self):
         """
-        Calls three helper,py functions and returns a Numpy array object 
+        Calls three helper.py functions and returns a Numpy array object 
         containing the network data.
         """
         
-        get_csv()
-        df = panda_csv()
-        data = convert_to_np_array(df)
+        if self.remote_server_capability:
+            self.get_csv()
+        
+        df = self.panda_csv()
+        data = self.convert_to_np_array(df)
         return data
 
     def my_plotter(self, ax, data1, data2, param_dict={}):
@@ -130,6 +160,49 @@ class Graph():
 
         return out
 
+    def get_csv(self):
+        """
+        Establish connection with raspi and pull csv, returns NoneType
+        """
+
+        file_path = Path.cwd()
+        remote_file_location = self.remote_server_username + "@" + self.ip_address + ":" + self.csv_file_location
+        local_file_location = file_path.joinpath('data', 'network_monitor.csv')
+        command = ["scp", remote_file_location, local_file_location]
+        subprocess.run(command)
+
+    def panda_csv(self):
+        """ Get data from csv, validate it, return dataframe """
+
+        file_path = Path.cwd()
+        local_file_location = file_path.joinpath('data', 'network_monitor.csv')
+        columns = ["Time", "Ping (ms)", "Jitter (ms)", "Download (Mbps)", "Upload (Mbps)"]
+        df = pd.read_csv(local_file_location, usecols=columns)
+
+        df = df.reset_index()
+
+        rows_to_drop = []
+        drop_criteria = ['FAILED']
+        i = 0
+        j = 0
+        for i in range(0, len(df)):
+            for j in range(0, len(df.columns)):
+                if df.iloc[i, j] in drop_criteria:
+                    rows_to_drop.append(i)
+                    
+        df = df.drop(rows_to_drop)
+
+        t = 0
+        for column in df.columns[2:]:
+            df[column] = df[column].astype(float)
+
+        return df
+
+    def convert_to_np_array(self, df):
+        "Accepts anything that can be turned into an array and returns a numpy array"
+
+        np_array = np.asarray(df)
+        return np_array
 
 def main(jitter=False, upload=False, download=False):
     """
@@ -144,4 +217,4 @@ def main(jitter=False, upload=False, download=False):
     return graph
 
 if __name__ == '__main__':
-    main(jitter=True)
+    main()
