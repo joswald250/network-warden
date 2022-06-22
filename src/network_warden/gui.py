@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+import matplotlib.pyplot as plt
 
 import graph_network
 import helpers
@@ -7,12 +8,37 @@ import helpers
 
 class GUI():
     """
-    Instantiate this class in order to return the main GUI for network_warden.
+    This class contains functions which launch the various pages of the GUI, along with calls
+    for back-end functionality.
 
     This Class wraps all GUI functionality together. When instantiated, it returns the welome
     page that begins the program. 
+
+    Attributes: 
+    - Graph Types
+
+    Methods:
+    - __init__
+    - create_welcome_window
+    - create_network_window
+    - create_settings_window
+    - collect_user_entries - tailored to the settings window
+    - edit_settings_file
+    - cancel_to_welcome
+    - quit
+    - show_network - actually brings up the graphs with call to graph_network.py
     """
     
+    graph_types = [
+        "jitter, download, and upload",
+        "upload and download",
+        "jitter and download",
+        "jitter and upload",
+        "jitter",
+        "upload",
+        "download",
+    ]
+
     def __init__(self):
         """
         Reads settings from config.toml and launches the create_welcome_window function.
@@ -65,7 +91,7 @@ class GUI():
 
         btn_show_network = ttk.Button(
             master=frm_buttons,
-            command=self.show_network,
+            command=self.create_network_window,
             text="Show Network Statistics"
         )
         btn_show_network.grid(row=0, column=1, pady=3, padx=15)
@@ -78,11 +104,89 @@ class GUI():
         btn_settings.grid(row=0, column=2, pady=3, padx=15)
 
         self.window.mainloop()
+    
+    def create_network_window(self):
+        """
+        Uses Tkinter to create a basic window to allow user to choose which
+        graphs they want displayed. 
+        
+        Will submit the call to graph_network.py as necessary.
+        """
+        
+        self.quit()
+        self.window = tk.Tk()
+        self.window.title("Network Warden")
+        self.window.rowconfigure(0, weight=1, minsize=75)
+        self.window.rowconfigure(1, weight=1, minsize=75)
+        self.window.rowconfigure(2, weight=1, minsize=75)
+        self.window.columnconfigure(0, weight=1, minsize=100)
+
+        # Two frames below separate the window into greeting message and buttons
+        frm_greeting = ttk.Frame(
+            master=self.window,
+            relief=tk.FLAT,
+            borderwidth=5
+        )
+        frm_greeting.grid(row=0, column=0, pady=10, padx=5)
+
+        frm_opt_menu = ttk.Frame(
+            master=self.window,
+            relief=tk.FLAT,
+            borderwidth=5
+        )
+        frm_opt_menu.grid(row=1, column=0, pady=10, padx=5)
+
+        frm_buttons = ttk.Frame(
+            master=self.window,
+            relief=tk.FLAT,
+            borderwidth=5
+        )
+        frm_buttons.grid(row=2, column=0, pady=10, padx=5)
+
+        lbl_greeting = ttk.Label(
+            master=frm_greeting,
+            text="Please select which graphs you would like to display.",
+            width=50,
+            wraplength=450
+        )
+        lbl_greeting.grid(row=0, column=0, sticky="nsew", padx=5)
+
+        # Switching to opt_menu frame
+        lbl_graph_type = ttk.Label(
+            master=frm_opt_menu,
+            text="Graph Type(s): "
+        )
+        lbl_graph_type.grid(row=0, column=0, sticky="w", padx=5)
+
+        self.string_var = tk.StringVar() # initialize string variable for option menu
+        self.opt_graph_type = tk.OptionMenu(
+            frm_opt_menu,
+            self.string_var,
+            *self.graph_types
+        )
+        self.opt_graph_type.grid(row=0, column=1, padx=5, sticky="e")
+
+        # Buttons are placed in a grid and bound using the command parameter
+        btn_cancel = ttk.Button(
+            master=frm_buttons,
+            command=self.cancel_to_welcome,
+            text="Cancel"
+        )
+        btn_cancel.grid(row=0, column=0, pady=3, padx=15)
+
+        btn_show_network = ttk.Button(
+            master=frm_buttons,
+            command=self.show_network,
+            text="Show Network Statistics"
+        )
+        btn_show_network.grid(row=0, column=1, pady=3, padx=15)
+
+        self.window.mainloop()
 
     def create_settings_window(self):
         """
         Function is launched when the settings button is pressed in the welcome
-        window. Returns a window with entries for editing settings.
+        window. Returns a window with entry widgets for editing settings.
         """
         
         # Note the destruction of the welcome window first
@@ -265,7 +369,23 @@ class GUI():
         self.window.destroy()
     
     def show_network(self):
-        graph_network.main()
+        """
+        Gets graph_type string from network window and loads a parameter dictionary
+        that will be passed to the graph_network.py module. Then shows the requested
+        graph. Returns NoneType.
+        """
+        
+        graph_type = self.string_var.get()
+        parameters = {}
+        if "jitter" in graph_type:
+            parameters["jitter"] = True
+        if "download" in graph_type:
+            parameters["download"] = True
+        if "upload" in graph_type:
+            parameters["upload"] = True
+        
+        graph_network.main(**parameters)
+        plt.show()
 
 def main():
     app = GUI()
