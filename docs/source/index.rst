@@ -10,7 +10,9 @@ Welcome to Network Warden's documentation!
 home network usage. It can be configured to work with a raspberry pi (the
 original inspiration), or the host machine. To view the project website
 go to `The project's github page 
-<https://rapitwitterbots.github.io/network-warden/>`_. 
+<https://rapitwitterbots.github.io/network-warden/>`_. Check out the
+:doc:`usage` page for info, especially on how to :ref:`install <installation>`
+ the project.
 
 .. note::
    This project is under active development.
