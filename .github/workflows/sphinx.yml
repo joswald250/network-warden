@@ -1,6 +1,8 @@
 name: "Push Docs Check"
 on:
-  pull_request: 
+  push:
+    branches:
+      - master
 
 jobs:
   docs:
