@@ -7,26 +7,10 @@ import helpers
 
 
 class GUI():
-    """
-    This class contains functions which launch the various pages of the GUI, along with calls
-    for back-end functionality.
+    """Wraps gui functionality into one object
 
-    This Class wraps all GUI functionality together. When instantiated, it returns the welome
-    page that begins the program. 
-
-    Attributes: 
-    - Graph Types
-
-    Methods:
-    - __init__
-    - create_welcome_window
-    - create_network_window
-    - create_settings_window
-    - collect_user_entries - tailored to the settings window
-    - edit_settings_file
-    - cancel_to_welcome
-    - quit
-    - show_network - actually brings up the graphs with call to graph_network.py
+    Returns:
+        <class '__main__.GUI'>: essentially None
     """
     
     graph_types = [
@@ -41,7 +25,8 @@ class GUI():
 
     def __init__(self):
         """
-        Reads settings from config.toml and launches the create_welcome_window function.
+        Reads settings from config.toml and launches the 
+        create_welcome_window function.
         """
 
         self.config_info = helpers.read_from_config()
@@ -50,8 +35,8 @@ class GUI():
 
     def create_welcome_window(self):
         """
-        Uses Tkinter to create a basic window that first pops up when network_warden
-        is launched.
+        Uses Tkinter to create a basic window that first pops up when 
+        network_warden is launched.
         """
         
         self.window = tk.Tk()
@@ -60,7 +45,7 @@ class GUI():
         self.window.rowconfigure(1, weight=1, minsize=75)
         self.window.columnconfigure(0, weight=1, minsize=100)
 
-        # Two frames below separate the window into greeting message and buttons
+        # Two frames below separate the window into greeting and buttons
         frm_greeting = ttk.Frame(
             master=self.window,
             relief=tk.FLAT,
@@ -121,7 +106,7 @@ class GUI():
         self.window.rowconfigure(2, weight=1, minsize=75)
         self.window.columnconfigure(0, weight=1, minsize=100)
 
-        # Two frames below separate the window into greeting message and buttons
+        # Three frames stacked on top of each other
         frm_greeting = ttk.Frame(
             master=self.window,
             relief=tk.FLAT,
@@ -157,8 +142,9 @@ class GUI():
             text="Graph Type(s): "
         )
         lbl_graph_type.grid(row=0, column=0, sticky="w", padx=5)
-
-        self.string_var = tk.StringVar() # initialize string variable for option menu
+        
+        # initialize string variable for option menu
+        self.string_var = tk.StringVar() 
         self.opt_graph_type = tk.OptionMenu(
             frm_opt_menu,
             self.string_var,
@@ -184,9 +170,7 @@ class GUI():
         self.window.mainloop()
 
     def create_settings_window(self):
-        """
-        Function is launched when the settings button is pressed in the welcome
-        window. Returns a window with entry widgets for editing settings.
+        """Creates settings window to allow user to edit config.toml
         """
         
         # Note the destruction of the welcome window first
@@ -229,7 +213,9 @@ class GUI():
         # Labels are grouped together
         lbl_directions = ttk.Label(
             master=frm_directions,
-            text="Leave blank any settings you want unchanged. \n\nClick Submit to change settings, click Cancel to leave all settings unchanged.",
+            text="Leave blank any settings you want unchanged. \n\nClick \
+                Submit to change settings, click Cancel to leave all \
+                    settings unchanged.",
             wraplength=450,
             justify=tk.LEFT
         )
@@ -301,13 +287,15 @@ class GUI():
             master=frm_inputs,
             width=20
         )
-        self.ent_remote_ip_address.grid(row=2, column=1, padx=15, pady=20, sticky="w")
+        self.ent_remote_ip_address.grid(row=2, column=1, padx=15, pady=20, 
+                                        sticky="w")
 
         self.ent_remote_server_key = ttk.Entry(
             master=frm_inputs,
             width=20
         )
-        self.ent_remote_server_key.grid(row=3, column=1, padx=15, pady=20, sticky="w")
+        self.ent_remote_server_key.grid(row=3, column=1, padx=15, pady=20, 
+                                        sticky="w")
 
         btn_cancel = ttk.Button(
             master=frm_buttons,
@@ -326,8 +314,7 @@ class GUI():
         self.window.mainloop()
 
     def collect_user_entries(self):
-        """
-        Gets entry data from settings window and returns them as a dict
+        """Gets entry data from settings window and returns them as a dict
         """
         
         user_settings = {}
@@ -342,10 +329,8 @@ class GUI():
         return user_settings, remote_server_settings
     
     def edit_settings_file(self):
-        """
-        Calls collect_user_entries to get dictionary of user inputs and 
-        after editing the config.toml file, returns NoneType and launches the 
-        welcome screen again.       
+        """Calls collect_user_entries and submits them before opening
+        welcom screen again.
         """
 
         user_settings, remote_server_settings = self.collect_user_entries()
@@ -369,10 +354,9 @@ class GUI():
         self.window.destroy()
     
     def show_network(self):
-        """
-        Gets graph_type string from network window and loads a parameter dictionary
-        that will be passed to the graph_network.py module. Then shows the requested
-        graph. Returns NoneType.
+        """Gets graph_type string from network window and loads a 
+        parameter dictionary that will be passed to the 
+        graph_network.py module.
         """
         
         graph_type = self.string_var.get()

@@ -1,4 +1,5 @@
 from pathlib import Path
+
 import tomli
 import tomli_w
 
@@ -9,9 +10,11 @@ functions which will be reused in various modules.
 """
 
 def read_from_config():
-    """
-    Establishes the cwd with pathlib and returns a dictionary object
-    with the current settings from the config.toml file.
+    """Pulls settings from config.toml.
+
+    Returns:
+        Python dictionary: contains all settings from config.toml in nested
+        dictionary.
     """
     
     p = Path.cwd()
@@ -21,9 +24,13 @@ def read_from_config():
     return toml_dict
 
 def edit_config(section, key, new_value):
-    """
-    Accepts the section, key, and new value of each setting as parameters,
-    then edits the config.toml file. Returns NoneType.
+    """Edits the config.toml file.
+
+    Args:
+        section (string): string that should match the section of the 
+        config.toml file.
+        key (string): string of name of setting
+        new_value (string): new value for setting
     """
     
     current_config = read_from_config()
