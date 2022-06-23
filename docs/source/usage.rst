@@ -1,2 +1,5 @@
 USAGE
 =====
+
+.. autofunction::
+    gui.main
