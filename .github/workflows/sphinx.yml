@@ -1,8 +1,8 @@
-name: "Push Docs Check"
+name: "Pull Request Docs Check"
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   docs:
