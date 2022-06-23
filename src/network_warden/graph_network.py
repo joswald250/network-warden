@@ -11,8 +11,8 @@ import helpers
 class Graph():
     """Gets and prepares data from a csv and then plots the requested graphs.
 
-    Returns:
-        Graph object: essentially a Matplotlib.Axes.Subplot object
+    :return: essentially a Matplotlib.Axes.Subplot object
+    :rtype: Graph object
     """
 
     jitter_graph_params = {"xlabel": "Time", "ylabel": "Jitter (ms)",
@@ -30,10 +30,12 @@ class Graph():
     def __init__(self, jitter=False, upload=False, download=False):
         """Loads parameters and settings, then launches graph_selector().
 
-        Args:
-            jitter (bool, optional): Graph type. Defaults to False.
-            upload (bool, optional): graph type. Defaults to False.
-            download (bool, optional): graph type. Defaults to False.
+        :param jitter:Graph type, defaults to False
+        :type jitter: bool, optional
+        :param upload: Graph type, defaults to False
+        :type upload: bool, optional
+        :param download: Graph type, defaults to False
+        :type download: bool, optional
         """
         
         self.jitter = jitter
@@ -66,11 +68,10 @@ class Graph():
             self.ip_address = configs["user"]["ip_address"]
 
     def graph_selector(self):
-        """Based upon parameters passed to the __init__ function, returns an
-        Axes.Subplot object(s).
+        """Selects the appropriate graph from parameters
 
-        Returns:
-            Graph object: Essentially a Matplotlib.Axes.Subplot object
+        :return: Essentially a Matplotlib.Axes.Subplot object
+        :rtype: Graph object
         """
         
         if self.jitter and not self.upload and not self.download:
@@ -131,8 +132,8 @@ class Graph():
     def prepare_data(self):
         """Calls three helper.py functions to prepare data for graphing.
 
-        Returns:
-            np.array: contains data to graph
+        :return: contains data to graph
+        :rtype: np.array
         """
         
         if self.remote_server_capability:
@@ -143,17 +144,19 @@ class Graph():
         return data
 
     def my_plotter(self, ax, data1, data2, param_dict={}):
-        """_summary_
+        """Creates a line based upon input x, y
 
-        Args:
-            ax (matplotlib.Axes): Axes object on which to add data
-            data1 (np.array): can technically take any series/array object
-            data2 (np.array): can technically take any series/array object
-            param_dict (dict, optional): parameters accepted: xlabel, ylabel,
-            title. Defaults to {}.
-
-        Returns:
-            matplotlib Line2D object: returns line for graph
+        :param ax: Axes object on which to add data
+        :type ax: matplotlib.Axes
+        :param data1: can technically take any series/array object
+        :type data1: np.array
+        :param data2: can technically take any series/array object
+        :type data2: np.array
+        :param param_dict: parameters accepted: xlabel, ylabel,
+            title. defaults to {}
+        :type param_dict: dict, optional
+        :return: returns line for graph
+        :rtype: matplotlib Line2D object
         """
         
         ax.set_xlabel(param_dict['xlabel'])
@@ -172,7 +175,8 @@ class Graph():
         """
 
         file_path = Path.cwd()
-        remote_file_location = self.remote_server_username + "@" + self.ip_address + ":" + self.csv_file_location
+        remote_file_location = self.remote_server_username 
+        + "@" + self.ip_address + ":" + self.csv_file_location
         local_file_location = file_path.joinpath('data', 'network_monitor.csv')
         command = ["scp", remote_file_location, local_file_location]
         subprocess.run(command)
@@ -180,8 +184,8 @@ class Graph():
     def panda_csv(self):
         """Gets data from local csv and validates it
 
-        Returns:
-            pd.Dataframe: dataframe containing validated csv data
+        :return: dataframe containing validated csv data
+        :rtype: pd.Dataframe
         """
 
         file_path = Path.cwd()
@@ -213,11 +217,10 @@ class Graph():
     def convert_to_np_array(self, df):
         """Converts anything np.asarray accepts to a np.array
 
-        Args:
-            df (pd.Dataframe): expected, but not technically required
-
-        Returns:
-            np.array: NumPy Array object
+        :param df: expected, but not technically required
+        :type df: pd.Dataframe
+        :return: NumPy Array object
+        :rtype: np.array
         """
 
         np_array = np.asarray(df)
@@ -226,13 +229,14 @@ class Graph():
 def main(jitter=False, upload=False, download=False):
     """Entry point for Graph class
 
-    Args:
-        jitter (bool, optional): graph type. Defaults to False.
-        upload (bool, optional): graph type. Defaults to False.
-        download (bool, optional): graph type. Defaults to False.
-
-    Returns:
-        Graph object: essentially a matplotlib.Axes.Subplot object
+    :param jitter: graph type, defaults to False
+    :type jitter: bool, optional
+    :param upload: graph type, defaults to False
+    :type upload: bool, optional
+    :param download: graph type, defaults to False
+    :type download: bool, optional
+    :return: essentially a matplotlib.Axes.Subplot object
+    :rtype: Graph objec
     """
     
     graph = Graph(jitter, upload, download)

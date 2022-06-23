@@ -9,8 +9,8 @@ import helpers
 class GUI():
     """Wraps gui functionality into one object
 
-    Returns:
-        <class '__main__.GUI'>: essentially None
+    :return: essentially None
+    :rtype: <class '__main__.GUI'>
     """
     
     graph_types = [

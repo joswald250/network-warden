@@ -12,9 +12,9 @@ functions which will be reused in various modules.
 def read_from_config():
     """Pulls settings from config.toml.
 
-    Returns:
-        Python dictionary: contains all settings from config.toml in nested
+    :return: contains all settings from config.toml in nested
         dictionary.
+    :rtype: Python dictionary
     """
     
     p = Path.cwd()
@@ -26,11 +26,13 @@ def read_from_config():
 def edit_config(section, key, new_value):
     """Edits the config.toml file.
 
-    Args:
-        section (string): string that should match the section of the 
+    :param section: string that should match the section of the 
         config.toml file.
-        key (string): string of name of setting
-        new_value (string): new value for setting
+    :type section: string
+    :param key: string of name of setting
+    :type key: string
+    :param new_value: new value for setting
+    :type new_value: string
     """
     
     current_config = read_from_config()
