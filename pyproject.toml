@@ -7,7 +7,7 @@ name = "network_warden"
 version = "0.1.0"
 description = "Keep watch over your network and view common statistics in graphical format. Compatible with remote network monitoring devices."
 readme = "README.md"
-authors = [{ name = "Joey", email = "rapitwitterbots@gmail.com" }]
+authors = [{ name = "Joey", email = "joswald250@gmail.com" }]
 license = { file = "LICENSE" }
 classifiers = [
     "License :: GNU AGPL",
@@ -30,7 +30,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/rapitwitterbots/network-warden"
+Homepage = "https://github.com/joswald250/network-warden"
 
 [project.scripts]
-networok_warden = "network_warden.__main__:main"
+network_warden = "network_warden.__main__:main"

@@ -12,7 +12,7 @@ original inspiration), or the host machine. To view the project website
 go to `The project's github page 
 <https://rapitwitterbots.github.io/network-warden/>`_. Check out the
 :doc:`usage` page for info, especially on how to :ref:`install <installation>`
- the project.
+the project.
 
 .. note::
    This project is under active development.

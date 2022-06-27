@@ -8,6 +8,7 @@ import matplotlib.ticker as ticker
 
 import helpers
 
+
 class Graph():
     """Gets and prepares data from a csv and then plots the requested graphs.
 
@@ -57,8 +58,7 @@ class Graph():
         """Pulls relevant config.toml settings.
         """
         configs = helpers.read_from_config()
-        self.remote_server_capability = configs["user"]["remote_server_\
-                                                            capability"]
+        self.remote_server_capability = configs["user"]["remote_server_capability"]
         if self.remote_server_capability:
             self.csv_file_location = configs["remote_servers"]["csv_location"]
             self.ip_address = configs["remote_servers"]["ip_address"]
@@ -120,8 +120,9 @@ class Graph():
                             self.jitter_graph_params)
 
         else:
-            Exception("graph_selector chose a non-possible option!")
-
+            print("Could not select any of the graph options available!")
+            raise ValueError("No graph type selected!")
+            
         
         self.fig.set_figheight(7)
         self.fig.set_figwidth(10)
@@ -175,11 +176,17 @@ class Graph():
         """
 
         file_path = Path.cwd()
-        remote_file_location = self.remote_server_username 
-        + "@" + self.ip_address + ":" + self.csv_file_location
+        remote_file_location = (self.remote_server_username
+        + "@" + self.ip_address + ":" + self.csv_file_location)
         local_file_location = file_path.joinpath('data', 'network_monitor.csv')
         command = ["scp", remote_file_location, local_file_location]
-        subprocess.run(command)
+        try:
+            subprocess.run(command)
+        except ConnectionError as error:
+            print(error)
+            print("Connection error when attempting scp during function: "
+                  + __name__ + ".")
+        
 
     def panda_csv(self):
         """Gets data from local csv and validates it
