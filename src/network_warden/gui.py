@@ -190,8 +190,8 @@ class SettingsUserTab(ttk.Frame):
         self.cancel_to_welcome()
     
     def cancel_to_welcome(self):
-        self.destroy()
-        WelcomePage(self.parent)
+        self.parent.master.destroy()
+        MainApp()
 
 
 class SettingsRemoteTab(ttk.Frame):
@@ -337,8 +337,8 @@ class SettingsRemoteTab(ttk.Frame):
         self.cancel_to_welcome()
     
     def cancel_to_welcome(self):
-        self.destroy()
-        WelcomePage(self.parent)
+        self.parent.master.destroy()
+        MainApp()        
 
 
 class WelcomePage(tk.Toplevel):
@@ -518,7 +518,7 @@ class NetworkPage(tk.Toplevel):
     
     def cancel_to_welcome(self):
         self.destroy()
-        WelcomePage(self.parent)
+        MainApp()
 
 class MainApp(tk.Tk):
     """Wraps gui functionality into one object
