@@ -81,11 +81,9 @@ class SettingsUserTab(ttk.Frame):
         # Labels are grouped together
         lbl_directions = ttk.Label(
             master=frm_directions,
-            text=("Leave blank any settings you want unchanged. \n\nClick \
-                Submit to change settings, click Cancel to leave all \
-                    settings unchanged."),
-            wraplength=450,
-            justify=tk.LEFT
+            text=("Leave blank any settings you want unchanged. \n\nClick Submit to change settings, click Cancel to leave all settings unchanged."),
+            wraplength=500,
+            justify=tk.CENTER
         )
         lbl_directions.grid(row=0, column=0, padx=15, pady=5, sticky="ew")
 
@@ -223,7 +221,7 @@ class SettingsRemoteTab(ttk.Frame):
             relief=tk.FLAT,
             borderwidth=5
         )
-        frm_inputs.grid(row=2, column=1, pady=0, padx=5)
+        frm_inputs.grid(row=2, column=1, pady=0, padx=100)
 
         frm_buttons = ttk.Frame(
             master=self,
@@ -233,13 +231,12 @@ class SettingsRemoteTab(ttk.Frame):
         frm_buttons.grid(row=3, column=0, pady=10, padx=5, columnspan=2)
 
         # Labels are grouped together
+        caption = "Leave blank any settings you want unchanged. \n\nClick Submit to change settings, click Cancel to leave all settings unchanged."
         lbl_directions = ttk.Label(
             master=frm_directions,
-            text=("Leave blank any settings you want unchanged. \n\nClick \
-                Submit to change settings, click Cancel to leave all \
-                    settings unchanged."),
-            wraplength=450,
-            justify=tk.LEFT
+            text=caption,
+            wraplength=500,
+            justify=tk.CENTER
         )
         lbl_directions.grid(row=0, column=0, padx=15, pady=5, sticky="ew")
 
@@ -283,21 +280,21 @@ class SettingsRemoteTab(ttk.Frame):
             master=frm_inputs,
             width=20
         )
-        self.ent_username.grid(row=0, column=1, padx=15, pady=20, sticky="w")
+        self.ent_username.grid(row=0, column=1, padx=15, pady=20, sticky="e")
         self.ent_username.focus_set()   # Set the focus automatically here
 
         self.ent_ip_address = ttk.Entry(
             master=frm_inputs,
             width=20
         )
-        self.ent_ip_address.grid(row=1, column=1, padx=15, pady=20, sticky="w")
+        self.ent_ip_address.grid(row=1, column=1, padx=15, pady=20, sticky="e")
 
         self.ent_remote_server_key = ttk.Entry(
             master=frm_inputs,
             width=20
         )
         self.ent_remote_server_key.grid(row=3, column=1, padx=15, pady=20, 
-                                        sticky="w")
+                                        sticky="e")
 
         btn_cancel = ttk.Button(
             master=frm_buttons,
@@ -338,74 +335,7 @@ class SettingsRemoteTab(ttk.Frame):
     
     def cancel_to_welcome(self):
         self.parent.master.destroy()
-        MainApp()        
-
-
-class WelcomePage(tk.Toplevel):
-    
-    
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.parent = parent
-        
-        self.config_info = helpers.read_from_config()
-        self.username = self.config_info['user']['username']
-        
-        self.title("Network Warden")
-        self.rowconfigure(0, weight=1, minsize=100)
-        self.rowconfigure(1, weight=1, minsize=75)
-        self.columnconfigure(0, weight=1, minsize=100)
-
-        # Two frames below separate the window into greeting and buttons
-        frm_greeting = ttk.Frame(
-            master=self,
-            relief=tk.FLAT,
-            borderwidth=5
-        )
-        frm_greeting.grid(row=0, column=0, pady=10, padx=5)
-
-        frm_buttons = ttk.Frame(
-            master=self,
-            relief=tk.FLAT,
-            borderwidth=5
-        )
-        frm_buttons.grid(row=1, column=0, pady=10, padx=5)
-
-        lbl_greeting = ttk.Label(
-            master=frm_greeting,
-            text="Welome to Network Warden " + self.username + "!",
-            width=30)
-        lbl_greeting.pack(fill=tk.BOTH) # Note the different geometry manager
-
-        # Buttons are placed in a grid and bound using the command parameter
-        btn_cancel = ttk.Button(
-            master=frm_buttons,
-            command=self.quit,
-            text="Cancel"
-        )
-        btn_cancel.grid(row=0, column=0, pady=3, padx=15)
-
-        btn_show_network = ttk.Button(
-            master=frm_buttons,
-            command=self.create_network_page,
-            text="Show Network Statistics"
-        )
-        btn_show_network.grid(row=0, column=1, pady=3, padx=15)
-
-        btn_settings = ttk.Button(
-            master=frm_buttons,
-            command=self.create_settings_page,
-            text="Settings"
-        )
-        btn_settings.grid(row=0, column=2, pady=3, padx=15)
-        
-    def create_network_page(self):
-        self.destroy()
-        NetworkPage(self.parent)
-        
-    def create_settings_page(self):
-        self.destroy()
-        SettingsPage(self.parent)
+        MainApp()
 
 
 class NetworkPage(tk.Toplevel):
@@ -513,12 +443,85 @@ class NetworkPage(tk.Toplevel):
         if "upload" in graph_type:
             parameters["upload"] = True
         
-        graph_network.main(**parameters)
+        a = graph_network.main(**parameters)
+        print(a)
         plt.show()
     
     def cancel_to_welcome(self):
         self.destroy()
         MainApp()
+
+
+class WelcomePage(tk.Toplevel):
+    
+    
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.parent = parent
+        
+        self.config_info = helpers.read_from_config()
+        self.username = self.config_info['user']['username']
+        
+        self.title("Network Warden")
+        self.rowconfigure(0, weight=1, minsize=100)
+        self.rowconfigure(1, weight=1, minsize=75)
+        self.columnconfigure(0, weight=1, minsize=100)
+
+        # Two frames below separate the window into greeting and buttons
+        frm_greeting = ttk.Frame(
+            master=self,
+            relief=tk.FLAT,
+            borderwidth=5
+        )
+        frm_greeting.grid(row=0, column=0, pady=10, padx=5)
+
+        frm_buttons = ttk.Frame(
+            master=self,
+            relief=tk.FLAT,
+            borderwidth=5
+        )
+        frm_buttons.grid(row=1, column=0, pady=10, padx=5)
+
+        lbl_greeting = ttk.Label(
+            master=frm_greeting,
+            text="Welome to Network Warden " + self.username + "!",
+            width=30)
+        lbl_greeting.pack(fill=tk.BOTH) # Note the different geometry manager
+
+        # Buttons are placed in a grid and bound using the command parameter
+        btn_cancel = ttk.Button(
+            master=frm_buttons,
+            command=self.quit,
+            text="Exit"
+        )
+        btn_cancel.grid(row=0, column=0, pady=3, padx=15)
+
+        btn_show_network = ttk.Button(
+            master=frm_buttons,
+            command=self.create_network_page,
+            text="Show Network Statistics"
+        )
+        btn_show_network.grid(row=0, column=1, pady=3, padx=15)
+
+        btn_settings = ttk.Button(
+            master=frm_buttons,
+            command=self.create_settings_page,
+            text="Settings"
+        )
+        btn_settings.grid(row=0, column=2, pady=3, padx=15)
+        
+    def create_network_page(self):
+        self.destroy()
+        NetworkPage(self.parent)
+        
+    def create_settings_page(self):
+        self.destroy()
+        SettingsPage(self.parent)
+        
+    # def quit(self):
+    #     self.destroy()
+
+
 
 class MainApp(tk.Tk):
     """Wraps gui functionality into one object

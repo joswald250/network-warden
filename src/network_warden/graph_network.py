@@ -128,7 +128,7 @@ class Graph():
         self.fig.set_figwidth(10)
         plt.subplots_adjust(hspace=.5)
 
-        return self.axs
+        return self.fig, self.axs
 
     def prepare_data(self):
         """Calls three helper.py functions to prepare data for graphing.
