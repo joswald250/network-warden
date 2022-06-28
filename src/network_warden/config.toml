@@ -1,10 +1,10 @@
 [user]
 username = "joswald"
 ip_address = "192.168.0.24"
-remote_server_capability = false
+remote_server_capability = true
 csv_location = "/home/joey/network_monitor/network_monitor.csv"
 
 [remote_servers]
-username = "pi"
-ip_address = "192.168.0.38"
+username = ""
+ip_address = ""
 security_key = ""

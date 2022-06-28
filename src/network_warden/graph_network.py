@@ -258,6 +258,4 @@ def main(jitter=False, upload=False, download=False):
         
     
 if __name__ == '__main__':
-    main(download=True, jitter=True)
-    
-    plt.show()
+    main()

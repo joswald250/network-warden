@@ -1,3 +1,4 @@
+from queue import Empty
 import tkinter as tk
 import tkinter.ttk as ttk
 import matplotlib.pyplot as plt
@@ -136,15 +137,30 @@ class SettingsUserTab(ttk.Frame):
         )
         self.ent_ip_address.grid(row=1, column=1, padx=15, pady=20, sticky="w")
 
-        self.int_var = tk.IntVar()
-        self.chk_remote_server_capability = ttk.Checkbutton(
+        # Create a variable for the radiobuttons and a variable to hold 
+        # whether any radiobutton has been clicked. This will allow for
+        # input validation.
+        self.remote_server_var = tk.StringVar(frm_inputs, value="False")
+        self.radio_clicked_bool = False
+        self.rb_remote_server_off = tk.Radiobutton(
             master=frm_inputs,
-            variable=self.int_var,
-            width=-5
+            text="No",
+            variable=self.remote_server_var,
+            value="False",
+            command=self.radio_clicked
         )
-        self.chk_remote_server_capability.grid(row=2, column=1, padx=15, pady=20, 
+        self.rb_remote_server_on = tk.Radiobutton(
+            master=frm_inputs,
+            text="Yes",
+            variable=self.remote_server_var,
+            value="True",
+            command=self.radio_clicked         
+        )
+        self.rb_remote_server_off.grid(row=2, column=1, padx=1, pady=0, 
                                         sticky="w")
-
+        self.rb_remote_server_on.grid(row=3, column=1, padx=1, pady=0,
+                                      sticky="w")
+        
         btn_cancel = ttk.Button(
             master=frm_buttons,
             command=self.cancel_to_welcome,
@@ -165,15 +181,18 @@ class SettingsUserTab(ttk.Frame):
         
         user_settings = {}
         
-        user_settings["username"] = self.ent_username.get()
-        user_settings["ip_address"] = self.ent_ip_address.get()
-        rsc = self.int_var.get()
-        if rsc == 1:
-            user_settings["remote_server_capability"] = True
-        else:
-            user_settings["remote_server_capability"] = False
+        if self.ent_username.get() != "":
+            user_settings["username"] = self.ent_username.get()
+        if self.ent_ip_address.get() != "":
+            user_settings["ip_address"] = self.ent_ip_address.get()
+        rsc = self.remote_server_var.get()
         
-        return user_settings
+        if self.radio_clicked_bool:
+            if rsc == "True":
+                user_settings["remote_server_capability"] = True
+            else:
+                user_settings["remote_server_capability"] = False
+            return user_settings
     
     def edit_settings_file(self):
         """Calls collect_user_entries and submits them before opening
@@ -181,11 +200,14 @@ class SettingsUserTab(ttk.Frame):
         """
 
         user_settings = self.collect_user_entries()
-        
-        for key in user_settings:
-                helpers.edit_config('user', key, user_settings[key])
+        if user_settings is not None:
+            for key in user_settings:
+                    helpers.edit_config('user', key, user_settings[key])
 
         self.cancel_to_welcome()
+    
+    def radio_clicked(self):
+        self.radio_clicked_bool = True
     
     def cancel_to_welcome(self):
         self.parent.master.destroy()
@@ -315,10 +337,12 @@ class SettingsRemoteTab(ttk.Frame):
         """
         
         remote_server_settings = {}
-        
-        remote_server_settings["username"] = self.ent_username.get()
-        remote_server_settings["ip_address"] = self.ent_ip_address.get()
-        remote_server_settings["security_key"] = self.ent_remote_server_key.get()
+        if self.ent_username.get() != "":
+            remote_server_settings["username"] = self.ent_username.get()
+        if self.ent_ip_address.get() != "":
+            remote_server_settings["ip_address"] = self.ent_ip_address.get()
+        if self.ent_remote_server_key.get() != "":
+            remote_server_settings["security_key"] = self.ent_remote_server_key.get()
         
         return remote_server_settings
     
@@ -328,8 +352,10 @@ class SettingsRemoteTab(ttk.Frame):
         """
 
         remote_server_settings = self.collect_user_entries()
-        for key in remote_server_settings:
-            helpers.edit_config('remote_servers', key, remote_server_settings[key])
+        if len(remote_server_settings) != 0:
+            for key in remote_server_settings:
+                helpers.edit_config('remote_servers', key,
+                                    remote_server_settings[key])
 
         self.cancel_to_welcome()
     
@@ -443,8 +469,7 @@ class NetworkPage(tk.Toplevel):
         if "upload" in graph_type:
             parameters["upload"] = True
         
-        a = graph_network.main(**parameters)
-        print(a)
+        graph_network.main(**parameters)
         plt.show()
     
     def cancel_to_welcome(self):
