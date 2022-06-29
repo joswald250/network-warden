@@ -51,6 +51,9 @@ class Graph():
         
         plt.subplots_adjust(hspace=.3)
         
+        # If more than one graph type requested, use the my_plotter function
+        # to create the Line2D object, the 'graphed' dictionary keeps track
+        # of which Line2D objects are already created. 
         if i > 1:
             for j in range(0, i):
                 if jitter and graphed["jitter"] == False:
@@ -68,6 +71,8 @@ class Graph():
                                 self.download_graph_params)
                     graphed["download"] = True
         else:
+        # If only one graph type requested - need separate clause because
+        # cannot use index '[j]' on a single axes object.
             if jitter:
                     self.my_plotter(axs, data.time_data, data.jitter_data,
                                 self.jitter_graph_params)
@@ -109,7 +114,11 @@ class Graph():
 
 
 class LineData():
-    """Includes all methods and objects for the data which will be graphed.
+    """Returns four numpy arrays with the data to be graphed.
+    
+    This class takes input parameters, fetches data from remote source (if
+    remote_server_capability equals True in config.toml), prepares it for
+    graphing and then returns all the series as a single object.
 
     :return: LineData object which wraps all data together.
     :rtype: LineData object

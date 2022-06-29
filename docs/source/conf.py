@@ -12,7 +12,11 @@
 #
 import pathlib
 import sys
+import os
+
+sys.path.insert(0, os.path.abspath("/home/joey/code/Raspi/network_warden/src/network_warden"))
 sys.path.append(pathlib.Path(__file__).parents[2].resolve())
+
 
 
 # -- Project information -----------------------------------------------------
