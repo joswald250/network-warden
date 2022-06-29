@@ -1,8 +1,16 @@
-from queue import Empty
+"""This module intends to create a GUI for users that is clean and functional.
+
+This module contains classes for each toplevel window (and a couple of sub-
+classes for these toplevel windows), that are all called by the '__init__' 
+method of the MainApp class. 
+
+    :return: Simply runs a tkinter mainloop until the user exits.
+    :rtype: None
+"""
+
 import tkinter as tk
 import tkinter.ttk as ttk
 import matplotlib.pyplot as plt
-from pathlib import Path
 
 import graph_network
 import helpers
@@ -18,6 +26,12 @@ class SettingsPage(tk.Toplevel):
     """
     
     def __init__(self, parent):
+        """Calls super function and then instantiates several tkinter objects
+        to actually create the look/feel of the window.
+
+        :param parent: Should be the root tk.Tk object from MainApp.
+        :type parent: tk.Tk
+        """
         super().__init__(parent)
         self.parent = parent
         
@@ -42,9 +56,19 @@ class SettingsPage(tk.Toplevel):
 
 
 class SettingsUserTab(ttk.Frame):
-    
+    """One tab of the Notebook object in the SettingsPage window.
+
+    :param ttk: Inherits from a ttk.Frame object
+    :type ttk: ttk.Frame
+    """
     
     def __init__(self, parent):
+        """Calls super function and then instantiates several tkinter objects
+        to actually create the look/feel of the window.
+
+        :param parent: Should be the SettingsPage ttk.Notebook object.
+        :type parent: ttk.Notebook
+        """
         super().__init__(parent)
         self.parent = parent
         
@@ -215,9 +239,19 @@ class SettingsUserTab(ttk.Frame):
 
 
 class SettingsRemoteTab(ttk.Frame):
-    
+    """One tab of the Notebook object in the SettingsPage window.
+
+    :param ttk: Inherits from a ttk.Frame object
+    :type ttk: ttk.Frame
+    """
     
     def __init__(self, parent):
+        """Calls super function and then instantiates several tkinter objects
+        to actually create the look/feel of the window.
+
+        :param parent: Should be the SettingsPage ttk.Notebook object.
+        :type parent: ttk.Notebook
+        """
         super().__init__(parent)
         self.parent = parent
         
@@ -365,7 +399,12 @@ class SettingsRemoteTab(ttk.Frame):
 
 
 class NetworkPage(tk.Toplevel):
-    
+    """An object which inherits from tk.Toplevel to create a window providing
+    the user with options for which graph(s) they would like to plot.
+
+    :param tk: A tk.Toplevel object
+    :type tk: tk.Toplevel
+    """
     
     graph_types = [
         "jitter, download, and upload",
@@ -378,6 +417,12 @@ class NetworkPage(tk.Toplevel):
     ]
     
     def __init__(self, parent):
+        """Calls super function and then instantiates several tkinter objects
+        to actually create the look/feel of the window.
+
+        :param parent: Should be the root tk.Tk object from MainApp.
+        :type parent: tk.Tk
+        """
         super().__init__(parent)
         self.parent = parent
         
@@ -478,9 +523,20 @@ class NetworkPage(tk.Toplevel):
 
 
 class WelcomePage(tk.Toplevel):
-    
+    """An object which inherits from tk.Toplevel to create a simple welcome
+    window with options for the user.
+
+    :param tk: A tk.Toplevel object
+    :type tk: tk.Toplevel
+    """
     
     def __init__(self, parent):
+        """Calls super function and then instantiates several tkinter objects
+        to actually create the look/feel of the window.
+
+        :param parent: Should be the root tk.Tk object from MainApp.
+        :type parent: tk.Tk
+        """
         super().__init__(parent)
         self.parent = parent
         
@@ -549,7 +605,8 @@ class WelcomePage(tk.Toplevel):
 
 
 class MainApp(tk.Tk):
-    """Wraps gui functionality into one object
+    """Calls super method for tk.Tk, makes the window resizable, and then 
+    launches the WelcomePage class with itself (MainApp) as the parent.
 
     :return: essentially None
     :rtype: <class '__main__.GUI'>
@@ -574,6 +631,9 @@ class MainApp(tk.Tk):
         
 
 def main():
+    """Creates a MainApp object and begins the tkinter mainloop.
+    """
+    
     app = MainApp()
     app.mainloop()
 

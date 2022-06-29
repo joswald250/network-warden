@@ -1,0 +1,227 @@
+gui.WelcomePage
+===============
+
+.. currentmodule:: gui
+
+.. autoclass:: WelcomePage
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~WelcomePage.__init__
+      ~WelcomePage.after
+      ~WelcomePage.after_cancel
+      ~WelcomePage.after_idle
+      ~WelcomePage.anchor
+      ~WelcomePage.aspect
+      ~WelcomePage.attributes
+      ~WelcomePage.bbox
+      ~WelcomePage.bell
+      ~WelcomePage.bind
+      ~WelcomePage.bind_all
+      ~WelcomePage.bind_class
+      ~WelcomePage.bindtags
+      ~WelcomePage.cget
+      ~WelcomePage.client
+      ~WelcomePage.clipboard_append
+      ~WelcomePage.clipboard_clear
+      ~WelcomePage.clipboard_get
+      ~WelcomePage.colormapwindows
+      ~WelcomePage.columnconfigure
+      ~WelcomePage.command
+      ~WelcomePage.config
+      ~WelcomePage.configure
+      ~WelcomePage.create_network_page
+      ~WelcomePage.create_settings_page
+      ~WelcomePage.deiconify
+      ~WelcomePage.deletecommand
+      ~WelcomePage.destroy
+      ~WelcomePage.event_add
+      ~WelcomePage.event_delete
+      ~WelcomePage.event_generate
+      ~WelcomePage.event_info
+      ~WelcomePage.focus
+      ~WelcomePage.focus_displayof
+      ~WelcomePage.focus_force
+      ~WelcomePage.focus_get
+      ~WelcomePage.focus_lastfor
+      ~WelcomePage.focus_set
+      ~WelcomePage.focusmodel
+      ~WelcomePage.forget
+      ~WelcomePage.frame
+      ~WelcomePage.geometry
+      ~WelcomePage.getboolean
+      ~WelcomePage.getdouble
+      ~WelcomePage.getint
+      ~WelcomePage.getvar
+      ~WelcomePage.grab_current
+      ~WelcomePage.grab_release
+      ~WelcomePage.grab_set
+      ~WelcomePage.grab_set_global
+      ~WelcomePage.grab_status
+      ~WelcomePage.grid
+      ~WelcomePage.grid_anchor
+      ~WelcomePage.grid_bbox
+      ~WelcomePage.grid_columnconfigure
+      ~WelcomePage.grid_location
+      ~WelcomePage.grid_propagate
+      ~WelcomePage.grid_rowconfigure
+      ~WelcomePage.grid_size
+      ~WelcomePage.grid_slaves
+      ~WelcomePage.group
+      ~WelcomePage.iconbitmap
+      ~WelcomePage.iconify
+      ~WelcomePage.iconmask
+      ~WelcomePage.iconname
+      ~WelcomePage.iconphoto
+      ~WelcomePage.iconposition
+      ~WelcomePage.iconwindow
+      ~WelcomePage.image_names
+      ~WelcomePage.image_types
+      ~WelcomePage.keys
+      ~WelcomePage.lift
+      ~WelcomePage.lower
+      ~WelcomePage.mainloop
+      ~WelcomePage.manage
+      ~WelcomePage.maxsize
+      ~WelcomePage.minsize
+      ~WelcomePage.nametowidget
+      ~WelcomePage.option_add
+      ~WelcomePage.option_clear
+      ~WelcomePage.option_get
+      ~WelcomePage.option_readfile
+      ~WelcomePage.overrideredirect
+      ~WelcomePage.pack_propagate
+      ~WelcomePage.pack_slaves
+      ~WelcomePage.place_slaves
+      ~WelcomePage.positionfrom
+      ~WelcomePage.propagate
+      ~WelcomePage.protocol
+      ~WelcomePage.quit
+      ~WelcomePage.register
+      ~WelcomePage.resizable
+      ~WelcomePage.rowconfigure
+      ~WelcomePage.selection_clear
+      ~WelcomePage.selection_get
+      ~WelcomePage.selection_handle
+      ~WelcomePage.selection_own
+      ~WelcomePage.selection_own_get
+      ~WelcomePage.send
+      ~WelcomePage.setvar
+      ~WelcomePage.size
+      ~WelcomePage.sizefrom
+      ~WelcomePage.slaves
+      ~WelcomePage.state
+      ~WelcomePage.title
+      ~WelcomePage.tk_bisque
+      ~WelcomePage.tk_focusFollowsMouse
+      ~WelcomePage.tk_focusNext
+      ~WelcomePage.tk_focusPrev
+      ~WelcomePage.tk_setPalette
+      ~WelcomePage.tk_strictMotif
+      ~WelcomePage.tkraise
+      ~WelcomePage.transient
+      ~WelcomePage.unbind
+      ~WelcomePage.unbind_all
+      ~WelcomePage.unbind_class
+      ~WelcomePage.update
+      ~WelcomePage.update_idletasks
+      ~WelcomePage.wait_variable
+      ~WelcomePage.wait_visibility
+      ~WelcomePage.wait_window
+      ~WelcomePage.waitvar
+      ~WelcomePage.winfo_atom
+      ~WelcomePage.winfo_atomname
+      ~WelcomePage.winfo_cells
+      ~WelcomePage.winfo_children
+      ~WelcomePage.winfo_class
+      ~WelcomePage.winfo_colormapfull
+      ~WelcomePage.winfo_containing
+      ~WelcomePage.winfo_depth
+      ~WelcomePage.winfo_exists
+      ~WelcomePage.winfo_fpixels
+      ~WelcomePage.winfo_geometry
+      ~WelcomePage.winfo_height
+      ~WelcomePage.winfo_id
+      ~WelcomePage.winfo_interps
+      ~WelcomePage.winfo_ismapped
+      ~WelcomePage.winfo_manager
+      ~WelcomePage.winfo_name
+      ~WelcomePage.winfo_parent
+      ~WelcomePage.winfo_pathname
+      ~WelcomePage.winfo_pixels
+      ~WelcomePage.winfo_pointerx
+      ~WelcomePage.winfo_pointerxy
+      ~WelcomePage.winfo_pointery
+      ~WelcomePage.winfo_reqheight
+      ~WelcomePage.winfo_reqwidth
+      ~WelcomePage.winfo_rgb
+      ~WelcomePage.winfo_rootx
+      ~WelcomePage.winfo_rooty
+      ~WelcomePage.winfo_screen
+      ~WelcomePage.winfo_screencells
+      ~WelcomePage.winfo_screendepth
+      ~WelcomePage.winfo_screenheight
+      ~WelcomePage.winfo_screenmmheight
+      ~WelcomePage.winfo_screenmmwidth
+      ~WelcomePage.winfo_screenvisual
+      ~WelcomePage.winfo_screenwidth
+      ~WelcomePage.winfo_server
+      ~WelcomePage.winfo_toplevel
+      ~WelcomePage.winfo_viewable
+      ~WelcomePage.winfo_visual
+      ~WelcomePage.winfo_visualid
+      ~WelcomePage.winfo_visualsavailable
+      ~WelcomePage.winfo_vrootheight
+      ~WelcomePage.winfo_vrootwidth
+      ~WelcomePage.winfo_vrootx
+      ~WelcomePage.winfo_vrooty
+      ~WelcomePage.winfo_width
+      ~WelcomePage.winfo_x
+      ~WelcomePage.winfo_y
+      ~WelcomePage.withdraw
+      ~WelcomePage.wm_aspect
+      ~WelcomePage.wm_attributes
+      ~WelcomePage.wm_client
+      ~WelcomePage.wm_colormapwindows
+      ~WelcomePage.wm_command
+      ~WelcomePage.wm_deiconify
+      ~WelcomePage.wm_focusmodel
+      ~WelcomePage.wm_forget
+      ~WelcomePage.wm_frame
+      ~WelcomePage.wm_geometry
+      ~WelcomePage.wm_grid
+      ~WelcomePage.wm_group
+      ~WelcomePage.wm_iconbitmap
+      ~WelcomePage.wm_iconify
+      ~WelcomePage.wm_iconmask
+      ~WelcomePage.wm_iconname
+      ~WelcomePage.wm_iconphoto
+      ~WelcomePage.wm_iconposition
+      ~WelcomePage.wm_iconwindow
+      ~WelcomePage.wm_manage
+      ~WelcomePage.wm_maxsize
+      ~WelcomePage.wm_minsize
+      ~WelcomePage.wm_overrideredirect
+      ~WelcomePage.wm_positionfrom
+      ~WelcomePage.wm_protocol
+      ~WelcomePage.wm_resizable
+      ~WelcomePage.wm_sizefrom
+      ~WelcomePage.wm_state
+      ~WelcomePage.wm_title
+      ~WelcomePage.wm_transient
+      ~WelcomePage.wm_withdraw
+   
+   
+
+   
+   
+   

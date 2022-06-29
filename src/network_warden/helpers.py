@@ -1,3 +1,12 @@
+"""This module intends to simply hold a series of functions which will be
+used throughout the package, and thus make more sense to store in a 
+separate module than to re-write in multiple locations.
+
+    :return: Nothing for the module itself - see function definitions for \
+    more details on each individual function.
+    :rtype: None
+"""
+
 from pathlib import Path
 
 import tomli

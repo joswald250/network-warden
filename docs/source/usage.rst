@@ -2,6 +2,7 @@ USAGE
 =====
 
 .. _installation:
+
 INSTALLATION
 ------------
 To use Network Warden, install it using pip:
@@ -12,6 +13,7 @@ To use Network Warden, install it using pip:
 
 
 .. _using_gui:
+
 GRAPHICAL USER INTERFACE (GUI)
 ------------------------------
 The main functions of Network Warden can be accessed via a convenient GUI.

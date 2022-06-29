@@ -1,3 +1,13 @@
+"""This module intends to wrap all functionality related to the actual
+creation of graphs.
+
+This includes gathering (either from a remote or local source) and preparing
+all of the data necessary for creating these graphs. 
+
+    :return: A Graph object that wraps a matplotlib figure and Axes object(s).
+    :rtype: Graph object
+"""
+
 import subprocess
 from pathlib import Path
 
@@ -5,7 +15,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-import matplotlib.figure as figure
 
 import helpers
 
@@ -43,7 +52,11 @@ class Graph():
         if download:
             graphed["download"] = False
             i += 1
-    
+
+        if len(graphed) == 0:
+            message = "No graph type selected!"
+            raise ValueError(message)
+        
         data = LineData(jitter=jitter, upload=upload, download=download)
         
         fig, axs = plt.subplots(i, sharex=True)
@@ -252,11 +265,11 @@ class LineData():
 def main(jitter=False, upload=False, download=False):
     """Entry point for graph_network.py
 
-    :param jitter: graph type, defaults to False
+    :param jitter: if True, will return jitter graph, defaults to False
     :type jitter: bool, optional
-    :param upload: graph type, defaults to False
+    :param upload: if True, will return upload graph, defaults to False
     :type upload: bool, optional
-    :param download: graph type, defaults to False
+    :param download: if True, will return download graph, defaults to False
     :type download: bool, optional
     """
     

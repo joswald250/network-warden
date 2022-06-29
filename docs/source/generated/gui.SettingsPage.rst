@@ -1,0 +1,225 @@
+gui.SettingsPage
+================
+
+.. currentmodule:: gui
+
+.. autoclass:: SettingsPage
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SettingsPage.__init__
+      ~SettingsPage.after
+      ~SettingsPage.after_cancel
+      ~SettingsPage.after_idle
+      ~SettingsPage.anchor
+      ~SettingsPage.aspect
+      ~SettingsPage.attributes
+      ~SettingsPage.bbox
+      ~SettingsPage.bell
+      ~SettingsPage.bind
+      ~SettingsPage.bind_all
+      ~SettingsPage.bind_class
+      ~SettingsPage.bindtags
+      ~SettingsPage.cget
+      ~SettingsPage.client
+      ~SettingsPage.clipboard_append
+      ~SettingsPage.clipboard_clear
+      ~SettingsPage.clipboard_get
+      ~SettingsPage.colormapwindows
+      ~SettingsPage.columnconfigure
+      ~SettingsPage.command
+      ~SettingsPage.config
+      ~SettingsPage.configure
+      ~SettingsPage.deiconify
+      ~SettingsPage.deletecommand
+      ~SettingsPage.destroy
+      ~SettingsPage.event_add
+      ~SettingsPage.event_delete
+      ~SettingsPage.event_generate
+      ~SettingsPage.event_info
+      ~SettingsPage.focus
+      ~SettingsPage.focus_displayof
+      ~SettingsPage.focus_force
+      ~SettingsPage.focus_get
+      ~SettingsPage.focus_lastfor
+      ~SettingsPage.focus_set
+      ~SettingsPage.focusmodel
+      ~SettingsPage.forget
+      ~SettingsPage.frame
+      ~SettingsPage.geometry
+      ~SettingsPage.getboolean
+      ~SettingsPage.getdouble
+      ~SettingsPage.getint
+      ~SettingsPage.getvar
+      ~SettingsPage.grab_current
+      ~SettingsPage.grab_release
+      ~SettingsPage.grab_set
+      ~SettingsPage.grab_set_global
+      ~SettingsPage.grab_status
+      ~SettingsPage.grid
+      ~SettingsPage.grid_anchor
+      ~SettingsPage.grid_bbox
+      ~SettingsPage.grid_columnconfigure
+      ~SettingsPage.grid_location
+      ~SettingsPage.grid_propagate
+      ~SettingsPage.grid_rowconfigure
+      ~SettingsPage.grid_size
+      ~SettingsPage.grid_slaves
+      ~SettingsPage.group
+      ~SettingsPage.iconbitmap
+      ~SettingsPage.iconify
+      ~SettingsPage.iconmask
+      ~SettingsPage.iconname
+      ~SettingsPage.iconphoto
+      ~SettingsPage.iconposition
+      ~SettingsPage.iconwindow
+      ~SettingsPage.image_names
+      ~SettingsPage.image_types
+      ~SettingsPage.keys
+      ~SettingsPage.lift
+      ~SettingsPage.lower
+      ~SettingsPage.mainloop
+      ~SettingsPage.manage
+      ~SettingsPage.maxsize
+      ~SettingsPage.minsize
+      ~SettingsPage.nametowidget
+      ~SettingsPage.option_add
+      ~SettingsPage.option_clear
+      ~SettingsPage.option_get
+      ~SettingsPage.option_readfile
+      ~SettingsPage.overrideredirect
+      ~SettingsPage.pack_propagate
+      ~SettingsPage.pack_slaves
+      ~SettingsPage.place_slaves
+      ~SettingsPage.positionfrom
+      ~SettingsPage.propagate
+      ~SettingsPage.protocol
+      ~SettingsPage.quit
+      ~SettingsPage.register
+      ~SettingsPage.resizable
+      ~SettingsPage.rowconfigure
+      ~SettingsPage.selection_clear
+      ~SettingsPage.selection_get
+      ~SettingsPage.selection_handle
+      ~SettingsPage.selection_own
+      ~SettingsPage.selection_own_get
+      ~SettingsPage.send
+      ~SettingsPage.setvar
+      ~SettingsPage.size
+      ~SettingsPage.sizefrom
+      ~SettingsPage.slaves
+      ~SettingsPage.state
+      ~SettingsPage.title
+      ~SettingsPage.tk_bisque
+      ~SettingsPage.tk_focusFollowsMouse
+      ~SettingsPage.tk_focusNext
+      ~SettingsPage.tk_focusPrev
+      ~SettingsPage.tk_setPalette
+      ~SettingsPage.tk_strictMotif
+      ~SettingsPage.tkraise
+      ~SettingsPage.transient
+      ~SettingsPage.unbind
+      ~SettingsPage.unbind_all
+      ~SettingsPage.unbind_class
+      ~SettingsPage.update
+      ~SettingsPage.update_idletasks
+      ~SettingsPage.wait_variable
+      ~SettingsPage.wait_visibility
+      ~SettingsPage.wait_window
+      ~SettingsPage.waitvar
+      ~SettingsPage.winfo_atom
+      ~SettingsPage.winfo_atomname
+      ~SettingsPage.winfo_cells
+      ~SettingsPage.winfo_children
+      ~SettingsPage.winfo_class
+      ~SettingsPage.winfo_colormapfull
+      ~SettingsPage.winfo_containing
+      ~SettingsPage.winfo_depth
+      ~SettingsPage.winfo_exists
+      ~SettingsPage.winfo_fpixels
+      ~SettingsPage.winfo_geometry
+      ~SettingsPage.winfo_height
+      ~SettingsPage.winfo_id
+      ~SettingsPage.winfo_interps
+      ~SettingsPage.winfo_ismapped
+      ~SettingsPage.winfo_manager
+      ~SettingsPage.winfo_name
+      ~SettingsPage.winfo_parent
+      ~SettingsPage.winfo_pathname
+      ~SettingsPage.winfo_pixels
+      ~SettingsPage.winfo_pointerx
+      ~SettingsPage.winfo_pointerxy
+      ~SettingsPage.winfo_pointery
+      ~SettingsPage.winfo_reqheight
+      ~SettingsPage.winfo_reqwidth
+      ~SettingsPage.winfo_rgb
+      ~SettingsPage.winfo_rootx
+      ~SettingsPage.winfo_rooty
+      ~SettingsPage.winfo_screen
+      ~SettingsPage.winfo_screencells
+      ~SettingsPage.winfo_screendepth
+      ~SettingsPage.winfo_screenheight
+      ~SettingsPage.winfo_screenmmheight
+      ~SettingsPage.winfo_screenmmwidth
+      ~SettingsPage.winfo_screenvisual
+      ~SettingsPage.winfo_screenwidth
+      ~SettingsPage.winfo_server
+      ~SettingsPage.winfo_toplevel
+      ~SettingsPage.winfo_viewable
+      ~SettingsPage.winfo_visual
+      ~SettingsPage.winfo_visualid
+      ~SettingsPage.winfo_visualsavailable
+      ~SettingsPage.winfo_vrootheight
+      ~SettingsPage.winfo_vrootwidth
+      ~SettingsPage.winfo_vrootx
+      ~SettingsPage.winfo_vrooty
+      ~SettingsPage.winfo_width
+      ~SettingsPage.winfo_x
+      ~SettingsPage.winfo_y
+      ~SettingsPage.withdraw
+      ~SettingsPage.wm_aspect
+      ~SettingsPage.wm_attributes
+      ~SettingsPage.wm_client
+      ~SettingsPage.wm_colormapwindows
+      ~SettingsPage.wm_command
+      ~SettingsPage.wm_deiconify
+      ~SettingsPage.wm_focusmodel
+      ~SettingsPage.wm_forget
+      ~SettingsPage.wm_frame
+      ~SettingsPage.wm_geometry
+      ~SettingsPage.wm_grid
+      ~SettingsPage.wm_group
+      ~SettingsPage.wm_iconbitmap
+      ~SettingsPage.wm_iconify
+      ~SettingsPage.wm_iconmask
+      ~SettingsPage.wm_iconname
+      ~SettingsPage.wm_iconphoto
+      ~SettingsPage.wm_iconposition
+      ~SettingsPage.wm_iconwindow
+      ~SettingsPage.wm_manage
+      ~SettingsPage.wm_maxsize
+      ~SettingsPage.wm_minsize
+      ~SettingsPage.wm_overrideredirect
+      ~SettingsPage.wm_positionfrom
+      ~SettingsPage.wm_protocol
+      ~SettingsPage.wm_resizable
+      ~SettingsPage.wm_sizefrom
+      ~SettingsPage.wm_state
+      ~SettingsPage.wm_title
+      ~SettingsPage.wm_transient
+      ~SettingsPage.wm_withdraw
+   
+   
+
+   
+   
+   

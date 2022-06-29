@@ -1,3 +1,7 @@
+"""This module is the heart of the Network Warden project. It actually collects
+and stores the data about the network performance.
+"""
+
 import os
 import re
 import datetime
@@ -39,7 +43,7 @@ class Network_Monitor():
         
         Create a subprocess that launches a call to the Speedtest CLI and tells
         it to pipe everything from speedtest to stdout. Then creates variables 
-        from this readout and uses re package to filter. Inputs all data to 
+        from this readout and uses 're' package to filter. Inputs all data to 
         a csv file, 'a+' tells open function to append and create file if 
         nonexistent.
         """

@@ -12,6 +12,7 @@
    .. rubric:: Functions
 
    .. autosummary::
+      :toctree:
    
       build_default_config
       edit_config
