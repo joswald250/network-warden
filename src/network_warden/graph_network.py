@@ -232,7 +232,7 @@ class LineData():
         local_file_location = file_path.joinpath('data', 
                                                  'network_monitor.csv')
         columns = ["Timestamp", "Latency (ms)", "Jitter (ms)", "Download (Mbps)", 
-                   " Upload (Mbps)"]
+                   "Upload (Mbps)"]
         df = pd.read_csv(local_file_location, usecols=columns)
 
         df = df.reset_index()
@@ -300,4 +300,5 @@ def main(jitter=False, upload=False, download=False):
         
     
 if __name__ == '__main__':
-    main()
+    main(jitter=True)
+    plt.show()
