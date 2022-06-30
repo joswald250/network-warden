@@ -631,7 +631,8 @@ class MainApp(tk.Tk):
         
 
 def main():
-    """Creates a MainApp object and begins the tkinter mainloop.
+    """Launches the GUI by creating a MainApp object and beginning the tkinter
+    mainloop.
     """
     
     app = MainApp()

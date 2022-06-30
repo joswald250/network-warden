@@ -9,7 +9,7 @@ To use Network Warden, install it using pip:
 
 .. code-block:: console
 
-    (.venv) $ pip install network_warden
+    (.venv) $ pip install network-warden
 
 
 .. _using_gui:

@@ -74,6 +74,8 @@ class Network_Monitor():
                 now.strftime('%H:%M'), ping, jitter, download, upload))
 
 def main():
+    """Instantiates the Network_Monitor class.
+    """
     net_mon = Network_Monitor()
 
 if __name__ == '__main__':
