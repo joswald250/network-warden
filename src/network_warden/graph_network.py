@@ -15,7 +15,7 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
+import matplotlib.ticker as mticker
 
 import helpers
 
@@ -59,7 +59,6 @@ class Graph():
             raise ValueError(message)
         
         data = LineData(jitter=jitter, upload=upload, download=download)
-        print(data.x_tick_labels)
         
         fig, axs = plt.subplots(i, sharex=True)
         fig.set_size_inches(12, 9)
@@ -117,8 +116,7 @@ class Graph():
         ax.set_xlabel(param_dict['xlabel'])
         ax.set_ylabel(param_dict['ylabel'])
         ax.set_title(param_dict['title'])
-        # ax.xaxis.set_major_locator(ticker.AutoLocator())
-        ax.yaxis.set_major_locator(ticker.AutoLocator())
+        ax.xaxis.set_major_locator(mticker.AutoLocator())
         ax.tick_params(axis='x', rotation=30)
         ax.set_xticklabels(x_tick_labels)
         
@@ -269,14 +267,10 @@ class LineData():
     def timestamp_to_date_time(self, series):
         date_time_array = np.array(series)
         str_array = []
-        print(str_array)
         for i in range(0, len(date_time_array)):
             dto = datetime.fromtimestamp(date_time_array[i])
-            print(dto)
             value = dto.strftime("%m-%d: %H:%M")
-            print(value)
             str_array.append(value)
-            print(str_array[i])
         str_array = np.asarray(str_array, dtype=str)
         return str_array
     

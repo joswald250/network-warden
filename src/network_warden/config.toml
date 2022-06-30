@@ -2,7 +2,7 @@
 username = "joswald"
 ip_address = "192.168.0.24"
 remote_server_capability = true
-csv_location = "/home/joey/network_monitor/network_monitor.csv"
+csv_location = "/home/joey/network_warden/network_monitor.csv"
 
 [remote_servers]
 username = "pi"

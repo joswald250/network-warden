@@ -15,7 +15,7 @@ class Network_Monitor():
     the csv file containing the data.
     """
     ip_address = "192.168.0.2"
-    csv_file_location = "/home/pi/network_monitor/network_monitor.csv"
+    csv_file_location = "/home/pi/network_warden/network_monitor.csv"
 
     def __init__(self):
         """Loads settings and runs speedtest function.

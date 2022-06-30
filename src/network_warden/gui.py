@@ -10,7 +10,6 @@ the '__init__' method of the MainApp class.
 
 import tkinter as tk
 import tkinter.ttk as ttk
-import matplotlib.pyplot as plt
 
 import helpers
 import gui_network
