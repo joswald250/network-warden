@@ -5,6 +5,8 @@ your network statistics in a digestible manner!
 __all__ = [
     "graph_network",
     "gui",
+    "gui_network",
+    "gui_settings",
     "network_monitor",
     "helpers",
 ]
@@ -25,7 +27,8 @@ from network_warden import (
     graph_network,
     gui,
     helpers,
-    installation_gui,
+    gui_settings,
+    gui_network,
     network_monitor,
 )
 

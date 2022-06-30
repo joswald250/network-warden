@@ -67,6 +67,7 @@ def build_default_config():
         "remote_servers": {
             "username": "pi",
             "ip_address": "192.168.0.38",
+            "password": "",
             "security_key": "",
             "csv_location": "/home/pi/network_monitor/network_monitor.csv"}}
     p = Path(__file__).parent.resolve()
@@ -74,3 +75,4 @@ def build_default_config():
         tomli_w.dump(default_config, f)
         
     return default_config
+

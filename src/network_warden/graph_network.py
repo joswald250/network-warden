@@ -10,6 +10,7 @@ all of the data necessary for creating these graphs.
 
 import subprocess
 from pathlib import Path
+from datetime import datetime
 
 import numpy as np
 import pandas as pd
@@ -58,6 +59,7 @@ class Graph():
             raise ValueError(message)
         
         data = LineData(jitter=jitter, upload=upload, download=download)
+        print(data.x_tick_labels)
         
         fig, axs = plt.subplots(i, sharex=True)
         fig.set_size_inches(12, 9)
@@ -71,32 +73,32 @@ class Graph():
             for j in range(0, i):
                 if jitter and graphed["jitter"] == False:
                     self.my_plotter(axs[j], data.time_data, data.jitter_data,
-                                self.jitter_graph_params)
+                                data.x_tick_labels, self.jitter_graph_params)
                     graphed["jitter"] = True
                     continue
                 if upload and graphed["upload"] == False:
                     self.my_plotter(axs[j], data.time_data, data.upload_data,
-                                self.upload_graph_params)
+                                data.x_tick_labels, self.upload_graph_params)
                     graphed["upload"] = True
                     continue
                 if download and graphed["download"] == False:
                     self.my_plotter(axs[j], data.time_data, data.download_data,
-                                self.download_graph_params)
+                                data.x_tick_labels, self.download_graph_params)
                     graphed["download"] = True
         else:
         # If only one graph type requested - need separate clause because
         # cannot use index '[j]' on a single axes object.
             if jitter:
                     self.my_plotter(axs, data.time_data, data.jitter_data,
-                                self.jitter_graph_params)
+                                data.x_tick_labels, self.jitter_graph_params)
             if upload:
                 self.my_plotter(axs, data.time_data, data.upload_data,
-                            self.upload_graph_params)
+                            data.x_tick_labels, self.upload_graph_params)
             if download:
                 self.my_plotter(axs, data.time_data, data.download_data,
-                            self.download_graph_params)
+                            data.x_tick_labels, self.download_graph_params)
     
-    def my_plotter(self, ax, data1, data2, param_dict={}):
+    def my_plotter(self, ax, data1, data2, x_tick_labels, param_dict={}):
         """Creates a line based upon input x, y
 
         :param ax: Axes object on which to add data
@@ -115,9 +117,10 @@ class Graph():
         ax.set_xlabel(param_dict['xlabel'])
         ax.set_ylabel(param_dict['ylabel'])
         ax.set_title(param_dict['title'])
-        ax.xaxis.set_major_locator(ticker.AutoLocator())
+        # ax.xaxis.set_major_locator(ticker.AutoLocator())
         ax.yaxis.set_major_locator(ticker.AutoLocator())
         ax.tick_params(axis='x', rotation=30)
+        ax.set_xticklabels(x_tick_labels)
         
         out = ax.plot(data1, data2)
 
@@ -139,6 +142,7 @@ class LineData():
     
     
     time_data = []
+    x_tick_labels= []
     jitter_data = []
     upload_data = []
     download_data = []
@@ -162,6 +166,8 @@ class LineData():
 
         data = self.prepare_data()
         self.time_data = data[:,1]
+        # Convert timestamp to readable format
+        self.x_tick_labels = self.timestamp_to_date_time(self.time_data)
         if self.jitter:
             self.jitter_data = data[:,3]
         if self.download:
@@ -225,8 +231,8 @@ class LineData():
         file_path = Path.cwd()
         local_file_location = file_path.joinpath('data', 
                                                  'network_monitor.csv')
-        columns = ["Time", "Ping (ms)", "Jitter (ms)", "Download (Mbps)", 
-                   "Upload (Mbps)"]
+        columns = ["Timestamp", "Latency (ms)", "Jitter (ms)", "Download (Mbps)", 
+                   " Upload (Mbps)"]
         df = pd.read_csv(local_file_location, usecols=columns)
 
         df = df.reset_index()
@@ -259,6 +265,20 @@ class LineData():
 
         np_array = np.asarray(df)
         return np_array
+    
+    def timestamp_to_date_time(self, series):
+        date_time_array = np.array(series)
+        str_array = []
+        print(str_array)
+        for i in range(0, len(date_time_array)):
+            dto = datetime.fromtimestamp(date_time_array[i])
+            print(dto)
+            value = dto.strftime("%m-%d: %H:%M")
+            print(value)
+            str_array.append(value)
+            print(str_array[i])
+        str_array = np.asarray(str_array, dtype=str)
+        return str_array
     
     
 

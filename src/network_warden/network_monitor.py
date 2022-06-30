@@ -51,12 +51,12 @@ class Network_Monitor():
         response = subprocess.Popen(command, shell=True, 
                     stdout=subprocess.PIPE).stdout.read().decode('utf-8')
 
-        ping = re.search('Latency:\s+(.*?)\s', response, re.MULTILINE)
+        latency = re.search('Latency:\s+(.*?)\s', response, re.MULTILINE)
         download = re.search('Download:\s+(.*?)\s', response, re.MULTILINE)
         upload = re.search('Upload:\s+(.*?)\s', response, re.MULTILINE)
         jitter = re.search('\((.*?)\s.+jitter\)\s', response, re.MULTILINE)
 
-        ping = ping.group(1)
+        latency = latency.group(1)
         download = download.group(1)
         upload = upload.group(1)
         jitter = jitter.group(1)
@@ -64,14 +64,14 @@ class Network_Monitor():
         try:
             f = open(self.csv_file_location, 'a+')
             if os.stat(self.csv_file_location).st_size == 0:
-                f.write('Date,Time,Ping (ms),Jitter (ms),Download (Mbps), \
-                    Upload (Mbps)\r\n')
+                f.write('Timestamp,Ping (ms),Jitter (ms),Download (Mbps),Upload (Mbps)\r\n')
         except:
             pass
         
-        now = datetime.datetime.now()
-        f.write('{},{},{},{},{},{}\r\n'.format(now.strftime('%m/%d/%y'), 
-                now.strftime('%H:%M'), ping, jitter, download, upload))
+        now = datetime.datetime.now(datetime.timezone.utc)
+        ts = datetime.datetime.timestamp(now)
+        f.write('{},{},{},{},{}\r\n'.format(ts, latency, jitter, download, 
+                                            upload))
 
 def main():
     """Instantiates the Network_Monitor class.
