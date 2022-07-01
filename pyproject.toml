@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=61.0.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "network_warden"
@@ -15,22 +15,34 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 keywords = ["network", "warden", "raspberry pi"]
-requires-python = ">=3.8"
-
-dependencies = [
-    "matplotlib",
-    "numpy",
-    "pandas",
-    "pathlib",
-    "tkinter",
-    'tomli >= 1.1.0 ; python_version < "3.11"',
-    "tomli-w",
-    "tk >= 8.5",
-    "pyqt >= 5"
-]
 
 [project.urls]
 Homepage = "https://github.com/joswald250/network-warden"
 
 [project.scripts]
 network_warden = "network_warden.__main__:main"
+
+[tool.poetry]
+name = "poetry"
+version = "1.1.13"
+description = ""
+authors = ["Joey <joswald250@gmail.com>"]
+license = "AGPL-1.0-or-later"
+readme = "README.md"
+packages = [
+    { include = "network_warden"}
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+tomli-w = "^1.0.0"
+numpy = "^1.23.0"
+pandas = "^1.4.3"
+pathlib = "^1.0.1"
+tomli = "^2.0.1"
+matplotlib = "^3.5.0"
+Pillow = "<9.2"
+DateTime = "^4.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.4"
