@@ -1,4 +1,4 @@
-from network_warden import gui
+import gui
 
 def main():
     gui.main()

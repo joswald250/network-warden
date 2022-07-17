@@ -9,6 +9,9 @@ To use Network Warden, install it using pip:
 
     (.venv) $ pip install network-warden
 
+.. note:: 
+    This project only works with Linux OS's at the moment.
+
 
 
 GRAPHICAL USER INTERFACE (GUI)
