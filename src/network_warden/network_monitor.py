@@ -65,7 +65,7 @@ class Network_Monitor():
             f = open(self.csv_file_location, 'a+')
             if os.stat(self.csv_file_location).st_size == 0:
                 f.write('Timestamp,Ping (ms),Jitter (ms),Download (Mbps),Upload (Mbps)\r\n')
-        except:
+        except FileNotFoundError:
             pass
         
         now = datetime.datetime.now(datetime.timezone.utc)
