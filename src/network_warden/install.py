@@ -47,11 +47,11 @@ class install():
             subprocess.Popen(rm_command, shell=True, stdout=subprocess.PIPE)
         
         cwd = Path.cwd()
-        crontab_path = Path.absolute(f"{cwd}/network_monitor.py")
+        crontab_path = Path(f"{cwd}/network_monitor.py")
         cron_text = f"# /etc/cron.d/network_monitor: crontab entries for the network warden package\n\nSHELL=/bin/sh\nPATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin\n\n*/2 * * * * python3 {crontab_path}"
         install_command = "touch /etc/cron.d/network_monitor"
         subprocess.Popen(install_command, shell=True, stdout=subprocess.PIPE)
-        crontab_path.write_text(cron_text)
+        path.write_text(cron_text)
         
 
 
